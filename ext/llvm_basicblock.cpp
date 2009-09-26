@@ -299,7 +299,7 @@ llvm_builder_call(int argc, VALUE* argv, VALUE self) {
     args[i] = LLVM_VAL(argv[i+1]); 
 
 #if defined(USE_ASSERT_CHECK)
-    if (FTy->getParamType(i) != args[i]->getType()) {
+    if (i < (int)FTy->getNumParams() && FTy->getParamType(i) != args[i]->getType()) {
       snprintf(message, 255, 
 	       "Calling a function with a bad signature in %d argument", 
 	       i);
